@@ -1,1 +1,14 @@
 #!/usr/bin/env ruby
+require File.dirname(__FILE__) + "/../lib/csvtoy"
+require File.dirname(__FILE__) + "/../lib/csvtoy_option_parser"
+
+parser = CSVToyOptionParser.new
+parser.parse!
+
+if parser.options[:code].empty?
+  puts parser.usage
+  puts "    -h for options listing"
+  exit(1) 
+end
+
+controller = CSVToy.new(parser.options).rewrite(STDIN, STDOUT)
