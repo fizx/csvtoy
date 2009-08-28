@@ -2,7 +2,7 @@
 
   Usage: cat in.csv | #{$0} [options] > out.csv\n\n"+
     Ruby code is evaled in the block: \n" + 
-    in_csv.rows.each {|row| out_csv << eval(your_code) }\n\n"
+    FasterCSV.filter(in, out) {|row| eval(your_code) } }\n\n"
 
 
 == Note on Patches/Pull Requests
